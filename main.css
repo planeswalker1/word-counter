@@ -1,0 +1,28 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: #333;
+  font-family: sans-serif;
+  line-height: 1.4;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1360px;
+}
+
+h1 {
+  color: #222;
+}
+
+.group__label {
+  vertical-align: top;
+}
