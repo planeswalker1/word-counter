@@ -29,3 +29,46 @@
 // create a text node containing the property name and its value
 // append text node to li
 // append li to ul
+
+let textArea = document.querySelector('textarea');
+let list = document.createElement('ul');
+
+document.querySelector('form').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  // empty list in case its already submitted
+  while (list.firstChild) {
+    list.removeChild(list.firstChild);
+  }
+
+  // input value
+  let inputParagraph = textArea.value;
+  let filteredInputParagraph = inputParagraph.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+  let filteredInputWords = filteredInputParagraph.split(' ');
+
+  // object to store word and word counter
+  let words = {};
+
+  // loop to fill words object with input values
+  filteredInputWords.forEach(function (word) {
+    if (Object.keys(words).includes(word)) {
+      words[word] += 1
+    } else {
+      words[word] = 1;
+    }
+  });
+
+  createAndAppendListItems(list, words);
+
+  // append the list to .container
+  document.querySelector('.container').appendChild(list);
+
+  function createAndAppendListItems (list, object) {
+    for (property in object) {
+      let listItem = document.createElement('li');
+      let textNode = document.createTextNode(property + ': ' + object[property]);
+      listItem.appendChild(textNode);
+      list.appendChild(listItem);
+    }
+  }
+});
